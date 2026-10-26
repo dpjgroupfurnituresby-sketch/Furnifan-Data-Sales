@@ -1,415 +1,65 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#173c2d">
-  <meta name="description" content="Aplikasi Data Sales Furnifan Mebel Surabaya">
-  <title>Data Sales Furnifan</title>
-
-  <link rel="manifest" href="./manifest.json">
-  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
-  <link rel="apple-touch-icon" href="./icon-192.png">
-
+  <meta name="theme-color" content="#147d75">
+  <title>Furnifan Mebel Surabaya</title>
   <style>
-    :root {
-      --green: #173c2d;
-      --green2: #245940;
-      --gold: #d9ad58;
-      --bg: #f4f6f3;
-      --white: #fff;
-      --text: #1e2a23;
-      --muted: #718078;
-      --border: #e3e9e4;
-    }
-
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: var(--bg);
-    }
-
-    button, input, select, textarea { font: inherit; }
-
-    .topbar {
-      background: var(--green);
-      color: white;
-      padding: 18px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .brand img { width: 44px; height: 44px; border-radius: 12px; }
-    .brand h1 { margin: 0; font-size: 17px; }
-    .brand p { margin: 5px 0 0; font-size: 12px; color: #d6e4da; }
-
-    .wrap { max-width: 1100px; margin: auto; padding: 22px; }
-    .welcome h2 { margin: 0 0 8px; font-size: 24px; }
-    .welcome p { margin: 0; color: var(--muted); line-height: 1.5; }
-
-    .grid {
+      min-height: 100vh;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin: 22px 0;
+      place-items: center;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(125deg, #65d9ca, #f6b6d0);
     }
-
-    .card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 19px;
-      box-shadow: 0 3px 12px #17291b08;
-    }
-
-    .stat-label { color: var(--muted); font-size: 13px; }
-    .stat-value { margin-top: 12px; font-size: 25px; font-weight: 700; }
-    .stat-note { color: var(--muted); font-size: 12px; margin-top: 8px; }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .section-title h3 { margin: 0; font-size: 18px; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .field { display: flex; flex-direction: column; gap: 7px; }
-    .field.full { grid-column: 1 / -1; }
-    label { font-size: 13px; font-weight: 600; }
-
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid #d8e0d9;
-      border-radius: 10px;
-      padding: 12px;
+    main {
+      width: min(100%, 430px);
+      padding: 32px;
       background: white;
-      color: var(--text);
-      min-width: 0;
+      border-top: 5px solid #f28ab5;
+      border-radius: 25px;
+      box-shadow: 0 20px 55px #24564b25;
     }
-
-    input:focus, select:focus, textarea:focus {
-      outline: 2px solid #b7d4c1;
-      border-color: var(--green2);
-    }
-
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      border: 0;
-      border-radius: 10px;
-      padding: 12px 16px;
-      background: var(--green);
+    .logo {
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #31c8b4, #ef8db7);
       color: white;
-      cursor: pointer;
-      font-weight: 600;
+      font-size: 26px;
+      font-weight: bold;
     }
-
-    .btn:hover { background: var(--green2); }
-    .btn.gold { background: var(--gold); color: #292115; }
-    .btn.secondary { background: #eaf0eb; color: var(--green); }
-    .actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
-
-    .table-wrap { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; min-width: 600px; }
-    th, td { padding: 12px 10px; text-align: left; border-bottom: 1px solid var(--border); font-size: 13px; }
-    th { color: var(--muted); font-weight: 600; }
-    .empty { text-align: center; padding: 28px; color: var(--muted); }
-
-    .notice {
-      margin-top: 18px;
-      padding: 13px 15px;
-      border-radius: 10px;
-      background: #fff7e5;
-      color: #6c5019;
-      font-size: 13px;
-      line-height: 1.6;
+    h1 { color: #087e7d; font-size: 30px; line-height: 1.25; }
+    p { color: #657b7b; line-height: 1.6; }
+    a {
+      display: block;
+      padding: 14px;
+      border-radius: 11px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      background: linear-gradient(100deg, #22bfae, #ef8db7);
     }
-
-    .status { font-size: 12px; color: #d6e4da; }
-    footer { text-align: center; color: var(--muted); font-size: 12px; padding: 25px; }
-
-    @media (max-width: 700px) {
-      .topbar { padding: 15px; }
-      .wrap { padding: 15px; }
-      .grid { grid-template-columns: 1fr; }
-      .form-grid { grid-template-columns: 1fr; }
-      .field.full { grid-column: auto; }
-      .welcome h2 { font-size: 21px; }
-      .stat-value { font-size: 23px; }
-    }
+    small { display: block; margin-top: 18px; color: #788787; line-height: 1.5; }
   </style>
 </head>
-
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <img src="./icon-192.png" alt="Logo Furnifan">
-      <div>
-        <h1>FURNIFAN MEBEL</h1>
-        <p>DATA SALES SURABAYA</p>
-      </div>
-    </div>
-    <span class="status" id="connectionStatus">Memeriksa koneksi…</span>
-  </header>
-
-  <main class="wrap">
-    <section class="welcome">
-      <h2>Dashboard Data Sales</h2>
-      <p>Kelola catatan penjualan Furnifan Mebel Surabaya.</p>
-    </section>
-
-    <section class="grid" aria-label="Ringkasan penjualan">
-      <article class="card">
-        <div class="stat-label">Jumlah transaksi di perangkat ini</div>
-        <div class="stat-value" id="totalTransactions">0</div>
-        <div class="stat-note">Data lokal contoh, belum tersinkron ke server</div>
-      </article>
-      <article class="card">
-        <div class="stat-label">Total nilai penjualan lokal</div>
-        <div class="stat-value" id="totalSales">Rp0</div>
-        <div class="stat-note">Berdasarkan catatan yang tersimpan di perangkat</div>
-      </article>
-      <article class="card">
-        <div class="stat-label">Status aplikasi</div>
-        <div class="stat-value" style="font-size:20px">Siap dibuka</div>
-        <div class="stat-note">PWA Furnifan</div>
-      </article>
-    </section>
-
-    <section class="card">
-      <div class="section-title">
-        <h3>Input Penjualan</h3>
-      </div>
-
-      <form id="salesForm">
-        <div class="form-grid">
-          <div class="field">
-            <label for="date">Tanggal</label>
-            <input id="date" type="date" required>
-          </div>
-          <div class="field">
-            <label for="salesName">Nama sales</label>
-            <input id="salesName" type="text" placeholder="Nama sales" required>
-          </div>
-          <div class="field">
-            <label for="customer">Nama pelanggan</label>
-            <input id="customer" type="text" placeholder="Nama pelanggan" required>
-          </div>
-          <div class="field">
-            <label for="area">Area</label>
-            <input id="area" type="text" placeholder="Kota atau wilayah" required>
-          </div>
-          <div class="field">
-            <label for="amount">Nilai penjualan (Rp)</label>
-            <input id="amount" type="number" min="0" step="1" placeholder="Contoh: 2500000" required>
-          </div>
-          <div class="field">
-            <label for="payment">Status pembayaran</label>
-            <select id="payment" required>
-              <option value="Belum Lunas">Belum Lunas</option>
-              <option value="Lunas">Lunas</option>
-              <option value="DP">DP</option>
-            </select>
-          </div>
-          <div class="field full">
-            <label for="notes">Keterangan</label>
-            <textarea id="notes" rows="2" placeholder="Catatan tambahan (opsional)"></textarea>
-          </div>
-        </div>
-        <div class="actions">
-          <button class="btn" type="submit">Simpan Catatan Lokal</button>
-          <button class="btn secondary" type="reset">Kosongkan Form</button>
-          <button class="btn gold" type="button" id="exportCsv">Ekspor CSV</button>
-        </div>
-      </form>
-
-      <div class="notice">
-        <strong>Perhatian:</strong> versi ini menyimpan catatan hanya di browser/perangkat yang digunakan.
-        Data belum masuk ke Google Sheets. Jangan gunakan sebagai sumber data penjualan resmi sebelum
-        backend dan autentikasi server dihubungkan.
-      </div>
-    </section>
-
-    <section class="card" style="margin-top:18px">
-      <div class="section-title">
-        <h3>Catatan Penjualan Lokal</h3>
-        <button class="btn secondary" type="button" id="refreshData">Muat Ulang</button>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Tanggal</th>
-              <th>Sales</th>
-              <th>Pelanggan</th>
-              <th>Area</th>
-              <th>Nilai</th>
-              <th>Pembayaran</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody id="salesRows">
-            <tr><td colspan="7" class="empty">Belum ada catatan.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+  <main>
+    <div class="logo">F</div>
+    <h1>Furnifan Mebel Surabaya</h1>
+    <p>Catatan kiriman pabrik dan sistem data sales.</p>
+    <a href="https://script.google.com/macros/s/AKfycbyR45-Jn9qo3HH9NR4s5w56QX2sTPNm-bX_ZiLpSIzvbdydyHCX2bXg6vJakJ20L0tn/exec">
+      Buka Aplikasi Asli
+    </a>
+    <small>Gunakan akun yang sudah terdaftar. Data penjualan dikelola oleh aplikasi asli.</small>
   </main>
-
-  <footer>© <span id="year"></span> Furnifan Mebel Surabaya</footer>
-
-  <script>
-    "use strict";
-
-    const STORAGE_KEY = "furnifan_sales_local_v1";
-    const rupiah = value => new Intl.NumberFormat("id-ID", {
-      style: "currency", currency: "IDR", maximumFractionDigits: 0
-    }).format(value || 0);
-
-    const $ = id => document.getElementById(id);
-
-    function getSales() {
-      try {
-        const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-        return Array.isArray(value) ? value : [];
-      } catch {
-        return [];
-      }
-    }
-
-    function saveSales(items) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-    }
-
-    function renderSales() {
-      const items = getSales();
-      $("totalTransactions").textContent = items.length.toLocaleString("id-ID");
-      $("totalSales").textContent = rupiah(items.reduce((sum, item) => sum + Number(item.amount || 0), 0));
-
-      const tbody = $("salesRows");
-      tbody.replaceChildren();
-
-      if (!items.length) {
-        const tr = document.createElement("tr");
-        const td = document.createElement("td");
-        td.colSpan = 7;
-        td.className = "empty";
-        td.textContent = "Belum ada catatan.";
-        tr.appendChild(td);
-        tbody.appendChild(tr);
-        return;
-      }
-
-      [...items].reverse().forEach(item => {
-        const tr = document.createElement("tr");
-        [item.date, item.salesName, item.customer, item.area, rupiah(item.amount), item.payment]
-          .forEach(value => {
-            const td = document.createElement("td");
-            td.textContent = value ?? "";
-            tr.appendChild(td);
-          });
-
-        const actionCell = document.createElement("td");
-        const remove = document.createElement("button");
-        remove.type = "button";
-        remove.className = "btn secondary";
-        remove.textContent = "Hapus";
-        remove.addEventListener("click", () => {
-          if (!confirm("Hapus catatan lokal ini?")) return;
-          saveSales(getSales().filter(row => row.id !== item.id));
-          renderSales();
-        });
-        actionCell.appendChild(remove);
-        tr.appendChild(actionCell);
-        tbody.appendChild(tr);
-      });
-    }
-
-    $("salesForm").addEventListener("submit", event => {
-      event.preventDefault();
-      const amount = Number($("amount").value);
-
-      if (!Number.isFinite(amount) || amount < 0) {
-        alert("Masukkan nilai penjualan yang valid.");
-        return;
-      }
-
-      const item = {
-        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random(),
-        date: $("date").value,
-        salesName: $("salesName").value.trim(),
-        customer: $("customer").value.trim(),
-        area: $("area").value.trim(),
-        amount,
-        payment: $("payment").value,
-        notes: $("notes").value.trim()
-      };
-
-      try {
-        saveSales([...getSales(), item]);
-        $("salesForm").reset();
-        $("date").value = new Date().toISOString().slice(0, 10);
-        renderSales();
-        alert("Catatan disimpan di perangkat ini. Belum masuk ke Google Sheets.");
-      } catch {
-        alert("Penyimpanan lokal gagal. Periksa kapasitas browser.");
-      }
-    });
-
-    $("exportCsv").addEventListener("click", () => {
-      const items = getSales();
-      if (!items.length) {
-        alert("Belum ada data untuk diekspor.");
-        return;
-      }
-
-      const columns = [
-        ["Tanggal", "date"], ["Nama Sales", "salesName"],
-        ["Pelanggan", "customer"], ["Area", "area"],
-        ["Nilai Penjualan", "amount"], ["Pembayaran", "payment"],
-        ["Keterangan", "notes"]
-      ];
-
-      const quote = value => '"' + String(value ?? "").replace(/"/g, '""') + '"';
-      const csv = [
-        columns.map(col => quote(col[0])).join(","),
-        ...items.map(item => columns.map(col => quote(item[col[1]])).join(","))
-      ].join("\r\n");
-
-      const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "furnifan-data-sales.csv";
-      link.click();
-      URL.revokeObjectURL(url);
-    });
-
-    $("refreshData").addEventListener("click", renderSales);
-    $("year").textContent = new Date().getFullYear();
-    $("date").value = new Date().toISOString().slice(0, 10);
-    $("connectionStatus").textContent = navigator.onLine ? "Online" : "Offline";
-    window.addEventListener("online", () => $("connectionStatus").textContent = "Online");
-    window.addEventListener("offline", () => $("connectionStatus").textContent = "Offline");
-
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js")
-          .catch(error => console.error("Service worker gagal:", error));
-      });
-    }
-
-    renderSales();
-  </script>
 </body>
 </html>
