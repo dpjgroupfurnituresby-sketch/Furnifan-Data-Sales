@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -31,116 +32,133 @@
       margin: 0;
       padding: 0;
       width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #ffffff;
+      min-height: 100%;
       font-family: "Segoe UI", Arial, sans-serif;
-    }
-
-    body {
-      height: 100vh;
-      height: 100dvh;
-    }
-
-    main {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100vh;
-      height: 100dvh;
-      overflow: hidden;
-      background: #ffffff;
-    }
-
-    #appFrame {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      margin: 0;
-      padding: 0;
-      background: #ffffff;
-    }
-
-    /* LAYAR PEMUATAN */
-    #loading {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      padding: 24px;
-      text-align: center;
       background: linear-gradient(135deg, #ccfbf1, #fce7f3);
       color: #134e4a;
     }
 
-    #loading.hidden {
-      display: none;
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
     }
 
-    .loading-logo {
-      width: 70px;
-      height: 70px;
+    main {
+      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 21px;
-      background: linear-gradient(135deg, #0f766e, #2dd4bf, #ec4899);
+      padding: 24px 18px 100px;
+    }
+
+    .panel {
+      width: 100%;
+      max-width: 430px;
+      padding: 30px 24px;
+      border: 1px solid rgba(255, 255, 255, .85);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .94);
+      box-shadow: 0 18px 55px rgba(15, 118, 110, .15);
+      text-align: center;
+    }
+
+    .logo {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 22px;
+      background: linear-gradient(
+        135deg,
+        #0f766e,
+        #2dd4bf,
+        #ec4899
+      );
       box-shadow: 0 8px 25px rgba(15, 118, 110, .2);
     }
 
-    .loading-logo svg {
-      width: 38px;
-      height: 38px;
+    .logo svg {
+      width: 42px;
+      height: 42px;
     }
 
-    .loading-title {
-      font-size: 19px;
-      font-weight: 700;
+    h1 {
+      margin: 0 0 12px;
+      font-size: 23px;
+      line-height: 1.35;
+      font-weight: 800;
       color: #115e59;
     }
 
-    .loading-subtitle {
-      max-width: 320px;
+    .subtitle {
+      margin: 0 0 24px;
       color: #475569;
-      font-size: 13px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .open-btn {
+      display: flex;
+      width: 100%;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 13px;
+      background: linear-gradient(
+        135deg,
+        #115e59,
+        #0f766e,
+        #159e91
+      );
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 7px 22px rgba(15, 118, 110, .23);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .open-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(15, 118, 110, .3);
+    }
+
+    .open-btn:active {
+      transform: scale(.98);
+    }
+
+    .open-btn:focus-visible,
+    #installBtn:focus-visible {
+      outline: 3px solid #ec4899;
+      outline-offset: 3px;
+    }
+
+    .open-icon {
+      width: 19px;
+      height: 19px;
+      flex-shrink: 0;
+    }
+
+    .hint {
+      margin: 18px 0 0;
+      color: #64748b;
+      font-size: 12px;
       line-height: 1.7;
     }
 
-    .spinner {
-      width: 30px;
-      height: 30px;
-      border: 3px solid #ccfbf1;
-      border-top-color: #0f766e;
-      border-right-color: #ec4899;
-      border-radius: 50%;
-      animation: spin .8s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* TOMBOL BUKA LANGSUNG JIKA DIPERLUKAN */
-    #directOpen {
-      display: none;
-      padding: 12px 20px;
-      border: 0;
-      border-radius: 12px;
-      background: #0f766e;
-      color: #ffffff;
-      font-family: inherit;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    #directOpen.show {
-      display: inline-block;
+    .footer {
+      margin-top: 22px;
+      padding-top: 15px;
+      border-top: 1px solid #e2e8f0;
+      color: #94a3b8;
+      font-size: 11px;
     }
 
     /* TOMBOL INSTAL PWA */
@@ -156,7 +174,12 @@
       padding: 13px 19px;
       border: 1px solid rgba(255, 255, 255, .65);
       border-radius: 50px;
-      background: linear-gradient(135deg, #115e59, #0f766e, #159e91);
+      background: linear-gradient(
+        135deg,
+        #115e59,
+        #0f766e,
+        #159e91
+      );
       color: #ffffff;
       font-family: inherit;
       font-size: 13px;
@@ -183,6 +206,18 @@
     }
 
     @media (max-width: 600px) {
+      main {
+        padding: 20px 16px 90px;
+      }
+
+      .panel {
+        padding: 27px 20px;
+      }
+
+      h1 {
+        font-size: 21px;
+      }
+
       #installBtn {
         left: 14px;
         bottom: max(16px, env(safe-area-inset-bottom));
@@ -204,113 +239,136 @@
 
 <body>
   <main>
-    <!-- APLIKASI DATA SALES ASLI -->
-    <iframe
-      id="appFrame"
-      title="Data Sales Furnifan Mebel Surabaya"
-      allow="clipboard-read; clipboard-write"
-      referrerpolicy="strict-origin-when-cross-origin"
-      loading="eager">
-    </iframe>
+    <section class="panel" aria-labelledby="appTitle">
 
-    <!-- LAYAR PEMUATAN -->
-    <div id="loading" role="status" aria-live="polite">
-      <div class="loading-logo" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none"
-             xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 20V8.5L12 4L20 8.5V20"
-                stroke="white" stroke-width="1.7"
-                stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M8 20V13H16V20"
-                stroke="white" stroke-width="1.7"
-                stroke-linejoin="round"/>
-          <path d="M8 9H8.01M12 9H12.01M16 9H16.01"
-                stroke="#fbcfe8" stroke-width="2.5"
-                stroke-linecap="round"/>
+      <!-- LOGO -->
+      <div class="logo" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 20V8.5L12 4L20 8.5V20"
+            stroke="white"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M8 20V13H16V20"
+            stroke="white"
+            stroke-width="1.7"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M8 9H8.01M12 9H12.01M16 9H16.01"
+            stroke="#fbcfe8"
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
         </svg>
       </div>
 
-      <div class="loading-title">Data Sales Furnifan</div>
+      <!-- JUDUL -->
+      <h1 id="appTitle">
+        Data Sales Furnifan
+      </h1>
 
-      <div class="spinner" id="spinner" aria-hidden="true"></div>
+      <p class="subtitle">
+        Sistem pencatatan dan pengelolaan data sales
+        Furnifan Mebel Surabaya.
+      </p>
 
-      <div class="loading-subtitle" id="loadingSubtitle">
-        Menghubungkan ke sistem Data Sales Furnifan.
-        Mohon tunggu sebentar...
+      <!-- BUKA APLIKASI ASLI -->
+      <a
+        class="open-btn"
+        id="openApp"
+        href="https://script.google.com/macros/s/AKfycbyR45-Jn9qo3HH9NR4s5w56QX2sTPNm-bX_ZiLpSIzvbdydyHCX2bXg6vJakJ20L0tn/exec"
+        target="_blank"
+        rel="noopener"
+      >
+        <span>Buka Data Sales</span>
+
+        <svg
+          class="open-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M14 4H20V10M20 4L10 14"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M18 13V19H5V6H11"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+
+      <p class="hint">
+        Tekan tombol di atas untuk membuka aplikasi asli.
+        Login dan data penjualan tetap menggunakan sistem
+        Data Sales Furnifan.
+      </p>
+
+      <div class="footer">
+        Furnifan Mebel Surabaya
       </div>
 
-      <a
-        id="directOpen"
-        href="https://script.google.com/macros/s/AKfycbyuw0D0JGWZnm_Ea_Zb-whtcD2ndfd0UIn-lfZe9kqo9j7wqye56OZcjR7KUsdEfCuA/exec"
-        target="_top"
-        rel="noopener">
-        Buka Login Aplikasi
-      </a>
-    </div>
+    </section>
   </main>
 
-  <!-- TOMBOL INSTAL -->
+  <!-- TOMBOL INSTAL PWA -->
   <button id="installBtn" type="button">
-    <svg class="install-icon"
-         viewBox="0 0 24 24"
-         fill="none"
-         xmlns="http://www.w3.org/2000/svg"
-         aria-hidden="true">
-      <path d="M12 3V15M7 10L12 15L17 10"
-            stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M5 16V20H19V16"
-            stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round"/>
+    <svg
+      class="install-icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M12 3V15M7 10L12 15L17 10"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M5 16V20H19V16"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
     </svg>
+
     <span>Instal Aplikasi</span>
   </button>
 
   <script>
     "use strict";
 
-    /*
-      URL WEB APP DATA SALES FURNIFAN.
-      URL ini adalah aplikasi Data Sales yang asli.
-    */
-    const APP_URL =
-      "https://script.google.com/macros/s/AKfycbyR45-Jn9qo3HH9NR4s5w56QX2sTPNm-bX_ZiLpSIzvbdydyHCX2bXg6vJakJ20L0tn/exec";
-
-    const frame = document.getElementById("appFrame");
-    const loading = document.getElementById("loading");
-    const loadingSubtitle = document.getElementById("loadingSubtitle");
-    const spinner = document.getElementById("spinner");
-    const directOpen = document.getElementById("directOpen");
     const installBtn = document.getElementById("installBtn");
 
     let installPrompt = null;
 
-    // Muat aplikasi asli di dalam jendela PWA.
-    frame.src = APP_URL;
-
-    // Event load tidak menjamin bahwa iframe diizinkan tampil.
-    // Sediakan pilihan membuka URL langsung bila proses terlalu lama.
-    const fallbackTimer = setTimeout(() => {
-      loadingSubtitle.textContent =
-        "Jika halaman login belum muncul, browser mungkin tidak " +
-        "mengizinkan aplikasi dibuka di dalam jendela ini. " +
-        "Gunakan tombol di bawah untuk membuka aplikasi langsung.";
-
-      spinner.style.display = "none";
-      directOpen.classList.add("show");
-    }, 12000);
-
-    frame.addEventListener("load", () => {
-      clearTimeout(fallbackTimer);
-      loading.classList.add("hidden");
-    }, { once: true });
-
-    // Prompt instalasi PWA, jika browser mendukungnya.
+    // SIMPAN PROMPT INSTALASI DARI BROWSER
     window.addEventListener("beforeinstallprompt", (event) => {
       event.preventDefault();
       installPrompt = event;
     });
 
+    // PROSES INSTALASI PWA
     installBtn.addEventListener("click", async () => {
       if (installPrompt) {
         const promptEvent = installPrompt;
@@ -335,7 +393,7 @@
 
       if (isIOS) {
         alert(
-          "Untuk memasang aplikasi:\n\n" +
+          "Cara memasang aplikasi:\n\n" +
           "1. Buka situs ini melalui Safari.\n" +
           "2. Tekan tombol Bagikan.\n" +
           "3. Pilih Tambahkan ke Layar Utama.\n" +
@@ -343,14 +401,14 @@
         );
       } else if (isAndroid) {
         alert(
-          "Untuk memasang aplikasi:\n\n" +
+          "Cara memasang aplikasi:\n\n" +
           "1. Buka situs ini melalui Chrome.\n" +
-          "2. Buka menu ⋮.\n" +
+          "2. Tekan menu titik tiga (⋮).\n" +
           "3. Pilih Instal aplikasi atau Tambahkan ke layar utama."
         );
       } else {
         alert(
-          "Untuk memasang aplikasi di Windows:\n\n" +
+          "Cara memasang aplikasi di komputer:\n\n" +
           "1. Buka situs ini melalui Microsoft Edge atau Chrome.\n" +
           "2. Buka menu browser.\n" +
           "3. Pilih Instal aplikasi atau Install this site as an app."
@@ -358,11 +416,12 @@
       }
     });
 
+    // SETELAH PWA TERINSTAL
     window.addEventListener("appinstalled", () => {
       installPrompt = null;
     });
 
-    // Daftarkan service worker untuk PWA.
+    // DAFTARKAN SERVICE WORKER
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker.register("./sw.js", {
