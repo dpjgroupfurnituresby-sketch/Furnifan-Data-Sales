@@ -1,74 +1,416 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#102a56">
-<meta name="description" content="Data Sales Furnifan Mebel Surabaya">
-<title>Data Sales Furnifan</title>
-<link rel="manifest" href="./manifest.json">
-<link rel="icon" href="./icon-192.png">
-<style>
-:root{--navy:#102a56;--muted:#62718a;--line:#d9e4f3}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif}
-body{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:24px;color:#182b49;background:radial-gradient(circle at 15% 10%,rgba(86,153,255,.2),transparent 34%),linear-gradient(145deg,#f7faff,#e9f1ff 48%,#f8fbff)}
-main{width:min(100%,420px);text-align:center}.mark{width:76px;height:76px;margin:0 auto 22px;border-radius:23px;display:grid;place-items:center;color:white;font-size:35px;font-weight:800;background:linear-gradient(145deg,#1c5ca8,#102a56);box-shadow:0 14px 30px #102a5638;border:1px solid #ffffff8c}
-h1{margin:0;color:var(--navy);font-size:clamp(25px,6vw,32px);line-height:1.18;letter-spacing:-.7px}.subtitle{margin:12px auto 28px;max-width:330px;color:var(--muted);font-size:15px;line-height:1.6}
-.actions{display:grid;gap:12px}button,.action{width:100%;min-height:50px;border:0;border-radius:14px;padding:14px 18px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer}
-.primary{color:white;background:linear-gradient(135deg,#1e63b5,#123a75);box-shadow:0 9px 20px #174b912e}.secondary{color:var(--navy);background:#ffffffcc;border:1px solid var(--line)}
-.note{margin:20px auto 0;color:#71809a;font-size:12px;line-height:1.5}[hidden]{display:none!important}
-#installHelp{margin-top:16px;border-radius:12px;padding:14px;text-align:left;background:#ffffffd9;border:1px solid var(--line);color:var(--muted);font-size:13px;line-height:1.55}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173c2d">
+  <meta name="description" content="Aplikasi Data Sales Furnifan Mebel Surabaya">
+  <title>Data Sales Furnifan</title>
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+
+  <style>
+    :root {
+      --green: #173c2d;
+      --green2: #245940;
+      --gold: #d9ad58;
+      --bg: #f4f6f3;
+      --white: #fff;
+      --text: #1e2a23;
+      --muted: #718078;
+      --border: #e3e9e4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    .topbar {
+      background: var(--green);
+      color: white;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand img { width: 44px; height: 44px; border-radius: 12px; }
+    .brand h1 { margin: 0; font-size: 17px; }
+    .brand p { margin: 5px 0 0; font-size: 12px; color: #d6e4da; }
+
+    .wrap { max-width: 1100px; margin: auto; padding: 22px; }
+    .welcome h2 { margin: 0 0 8px; font-size: 24px; }
+    .welcome p { margin: 0; color: var(--muted); line-height: 1.5; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 22px 0;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 19px;
+      box-shadow: 0 3px 12px #17291b08;
+    }
+
+    .stat-label { color: var(--muted); font-size: 13px; }
+    .stat-value { margin-top: 12px; font-size: 25px; font-weight: 700; }
+    .stat-note { color: var(--muted); font-size: 12px; margin-top: 8px; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-title h3 { margin: 0; font-size: 18px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-size: 13px; font-weight: 600; }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #d8e0d9;
+      border-radius: 10px;
+      padding: 12px;
+      background: white;
+      color: var(--text);
+      min-width: 0;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid #b7d4c1;
+      border-color: var(--green2);
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      background: var(--green);
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn:hover { background: var(--green2); }
+    .btn.gold { background: var(--gold); color: #292115; }
+    .btn.secondary { background: #eaf0eb; color: var(--green); }
+    .actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 600px; }
+    th, td { padding: 12px 10px; text-align: left; border-bottom: 1px solid var(--border); font-size: 13px; }
+    th { color: var(--muted); font-weight: 600; }
+    .empty { text-align: center; padding: 28px; color: var(--muted); }
+
+    .notice {
+      margin-top: 18px;
+      padding: 13px 15px;
+      border-radius: 10px;
+      background: #fff7e5;
+      color: #6c5019;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .status { font-size: 12px; color: #d6e4da; }
+    footer { text-align: center; color: var(--muted); font-size: 12px; padding: 25px; }
+
+    @media (max-width: 700px) {
+      .topbar { padding: 15px; }
+      .wrap { padding: 15px; }
+      .grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .welcome h2 { font-size: 21px; }
+      .stat-value { font-size: 23px; }
+    }
+  </style>
 </head>
+
 <body>
-<main>
-<div class="mark" aria-hidden="true">F</div>
-<h1>Data Sales Furnifan</h1>
-<p class="subtitle">Furnifan Mebel Surabaya<br>Portal data sales yang aman dan mudah diakses.</p>
-<div class="actions">
-<button id="installBtn" class="primary" type="button">＋ Instal aplikasi</button>
-<a class="action primary" id="openApp" href="https://script.google.com/macros/s/AKfycbwjfJhMqjIXmdddzu2dZCwsxKGhP4r7AlDxP6xSRNAjP2ZbxZdmZUu9_KY3swEvZAEn/exec">Buka aplikasi</a>
-</div>
-<div id="installHelp" hidden></div>
-<p class="note">Aplikasi dibuka melalui layanan Google Apps Script resmi.</p>
-</main>
-<script>
-const FURNIFAN_APP_URL = "https://script.google.com/macros/s/AKfycbwjfJhMqjIXmdddzu2dZCwsxKGhP4r7AlDxP6xSRNAjP2ZbxZdmZUu9_KY3swEvZAEn/exec";
-document.getElementById("openApp").href = FURNIFAN_APP_URL;
+  <header class="topbar">
+    <div class="brand">
+      <img src="./icon-192.png" alt="Logo Furnifan">
+      <div>
+        <h1>FURNIFAN MEBEL</h1>
+        <p>DATA SALES SURABAYA</p>
+      </div>
+    </div>
+    <span class="status" id="connectionStatus">Memeriksa koneksi…</span>
+  </header>
 
-let deferredPrompt = null;
-const installBtn = document.getElementById("installBtn");
-const installHelp = document.getElementById("installHelp");
+  <main class="wrap">
+    <section class="welcome">
+      <h2>Dashboard Data Sales</h2>
+      <p>Kelola catatan penjualan Furnifan Mebel Surabaya.</p>
+    </section>
 
-window.addEventListener("beforeinstallprompt", (event) => {
-  event.preventDefault();
-  deferredPrompt = event;
-});
+    <section class="grid" aria-label="Ringkasan penjualan">
+      <article class="card">
+        <div class="stat-label">Jumlah transaksi di perangkat ini</div>
+        <div class="stat-value" id="totalTransactions">0</div>
+        <div class="stat-note">Data lokal contoh, belum tersinkron ke server</div>
+      </article>
+      <article class="card">
+        <div class="stat-label">Total nilai penjualan lokal</div>
+        <div class="stat-value" id="totalSales">Rp0</div>
+        <div class="stat-note">Berdasarkan catatan yang tersimpan di perangkat</div>
+      </article>
+      <article class="card">
+        <div class="stat-label">Status aplikasi</div>
+        <div class="stat-value" style="font-size:20px">Siap dibuka</div>
+        <div class="stat-note">PWA Furnifan</div>
+      </article>
+    </section>
 
-installBtn.addEventListener("click", async () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-    return;
-  }
-  const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  const standalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
-  if (standalone) {
-    installHelp.hidden = false;
-    installHelp.textContent = "Aplikasi ini sudah dibuka dalam mode aplikasi.";
-  } else if (isIos) {
-    installHelp.hidden = false;
-    installHelp.innerHTML = 'Untuk memasang di iPhone/iPad: buka halaman ini di Safari, tekan tombol <strong>Bagikan</strong>, lalu pilih <strong>Tambahkan ke Layar Utama</strong>.';
-  } else {
-    installHelp.hidden = false;
-    installHelp.innerHTML = 'Browser belum menyediakan dialog instal otomatis. Di Chrome, buka menu <strong>⋮</strong> lalu pilih <strong>Instal aplikasi</strong> atau <strong>Tambahkan ke layar utama</strong>. Jika pilihan belum ada, pastikan halaman GitHub Pages dibuka melalui HTTPS dan semua file <strong>manifest.json</strong>, <strong>sw.js</strong>, serta folder <strong>icons</strong> sudah diunggah.';
-  }
-});
+    <section class="card">
+      <div class="section-title">
+        <h3>Input Penjualan</h3>
+      </div>
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
-}
-</script>
+      <form id="salesForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="date">Tanggal</label>
+            <input id="date" type="date" required>
+          </div>
+          <div class="field">
+            <label for="salesName">Nama sales</label>
+            <input id="salesName" type="text" placeholder="Nama sales" required>
+          </div>
+          <div class="field">
+            <label for="customer">Nama pelanggan</label>
+            <input id="customer" type="text" placeholder="Nama pelanggan" required>
+          </div>
+          <div class="field">
+            <label for="area">Area</label>
+            <input id="area" type="text" placeholder="Kota atau wilayah" required>
+          </div>
+          <div class="field">
+            <label for="amount">Nilai penjualan (Rp)</label>
+            <input id="amount" type="number" min="0" step="1" placeholder="Contoh: 2500000" required>
+          </div>
+          <div class="field">
+            <label for="payment">Status pembayaran</label>
+            <select id="payment" required>
+              <option value="Belum Lunas">Belum Lunas</option>
+              <option value="Lunas">Lunas</option>
+              <option value="DP">DP</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="notes">Keterangan</label>
+            <textarea id="notes" rows="2" placeholder="Catatan tambahan (opsional)"></textarea>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn" type="submit">Simpan Catatan Lokal</button>
+          <button class="btn secondary" type="reset">Kosongkan Form</button>
+          <button class="btn gold" type="button" id="exportCsv">Ekspor CSV</button>
+        </div>
+      </form>
+
+      <div class="notice">
+        <strong>Perhatian:</strong> versi ini menyimpan catatan hanya di browser/perangkat yang digunakan.
+        Data belum masuk ke Google Sheets. Jangan gunakan sebagai sumber data penjualan resmi sebelum
+        backend dan autentikasi server dihubungkan.
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:18px">
+      <div class="section-title">
+        <h3>Catatan Penjualan Lokal</h3>
+        <button class="btn secondary" type="button" id="refreshData">Muat Ulang</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>Sales</th>
+              <th>Pelanggan</th>
+              <th>Area</th>
+              <th>Nilai</th>
+              <th>Pembayaran</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="salesRows">
+            <tr><td colspan="7" class="empty">Belum ada catatan.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Furnifan Mebel Surabaya</footer>
+
+  <script>
+    "use strict";
+
+    const STORAGE_KEY = "furnifan_sales_local_v1";
+    const rupiah = value => new Intl.NumberFormat("id-ID", {
+      style: "currency", currency: "IDR", maximumFractionDigits: 0
+    }).format(value || 0);
+
+    const $ = id => document.getElementById(id);
+
+    function getSales() {
+      try {
+        const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        return Array.isArray(value) ? value : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveSales(items) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    }
+
+    function renderSales() {
+      const items = getSales();
+      $("totalTransactions").textContent = items.length.toLocaleString("id-ID");
+      $("totalSales").textContent = rupiah(items.reduce((sum, item) => sum + Number(item.amount || 0), 0));
+
+      const tbody = $("salesRows");
+      tbody.replaceChildren();
+
+      if (!items.length) {
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.colSpan = 7;
+        td.className = "empty";
+        td.textContent = "Belum ada catatan.";
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+        return;
+      }
+
+      [...items].reverse().forEach(item => {
+        const tr = document.createElement("tr");
+        [item.date, item.salesName, item.customer, item.area, rupiah(item.amount), item.payment]
+          .forEach(value => {
+            const td = document.createElement("td");
+            td.textContent = value ?? "";
+            tr.appendChild(td);
+          });
+
+        const actionCell = document.createElement("td");
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "btn secondary";
+        remove.textContent = "Hapus";
+        remove.addEventListener("click", () => {
+          if (!confirm("Hapus catatan lokal ini?")) return;
+          saveSales(getSales().filter(row => row.id !== item.id));
+          renderSales();
+        });
+        actionCell.appendChild(remove);
+        tr.appendChild(actionCell);
+        tbody.appendChild(tr);
+      });
+    }
+
+    $("salesForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const amount = Number($("amount").value);
+
+      if (!Number.isFinite(amount) || amount < 0) {
+        alert("Masukkan nilai penjualan yang valid.");
+        return;
+      }
+
+      const item = {
+        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random(),
+        date: $("date").value,
+        salesName: $("salesName").value.trim(),
+        customer: $("customer").value.trim(),
+        area: $("area").value.trim(),
+        amount,
+        payment: $("payment").value,
+        notes: $("notes").value.trim()
+      };
+
+      try {
+        saveSales([...getSales(), item]);
+        $("salesForm").reset();
+        $("date").value = new Date().toISOString().slice(0, 10);
+        renderSales();
+        alert("Catatan disimpan di perangkat ini. Belum masuk ke Google Sheets.");
+      } catch {
+        alert("Penyimpanan lokal gagal. Periksa kapasitas browser.");
+      }
+    });
+
+    $("exportCsv").addEventListener("click", () => {
+      const items = getSales();
+      if (!items.length) {
+        alert("Belum ada data untuk diekspor.");
+        return;
+      }
+
+      const columns = [
+        ["Tanggal", "date"], ["Nama Sales", "salesName"],
+        ["Pelanggan", "customer"], ["Area", "area"],
+        ["Nilai Penjualan", "amount"], ["Pembayaran", "payment"],
+        ["Keterangan", "notes"]
+      ];
+
+      const quote = value => '"' + String(value ?? "").replace(/"/g, '""') + '"';
+      const csv = [
+        columns.map(col => quote(col[0])).join(","),
+        ...items.map(item => columns.map(col => quote(item[col[1]])).join(","))
+      ].join("\r\n");
+
+      const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "furnifan-data-sales.csv";
+      link.click();
+      URL.revokeObjectURL(url);
+    });
+
+    $("refreshData").addEventListener("click", renderSales);
+    $("year").textContent = new Date().getFullYear();
+    $("date").value = new Date().toISOString().slice(0, 10);
+    $("connectionStatus").textContent = navigator.onLine ? "Online" : "Offline";
+    window.addEventListener("online", () => $("connectionStatus").textContent = "Online");
+    window.addEventListener("offline", () => $("connectionStatus").textContent = "Offline");
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js")
+          .catch(error => console.error("Service worker gagal:", error));
+      });
+    }
+
+    renderSales();
+  </script>
 </body>
 </html>
